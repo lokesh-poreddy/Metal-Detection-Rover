@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: black;
+    color: white;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-zinc-900/90 backdrop-blur-lg border border-zinc-800/50 rounded-lg p-6;
+  }
+
+  .section-box {
+    @apply bg-zinc-900 rounded-lg p-4 border border-zinc-800/50;
+  }
+
+  .viewer-container {
+    @apply bg-zinc-900/80 rounded-lg p-4 min-h-[500px] flex items-center justify-center;
+  }
+
+  .control-panel {
+    @apply bg-zinc-900 rounded-lg p-4 border border-zinc-800/50;
+  }
+
+  .panel-header {
+    @apply text-lg font-semibold mb-4 flex items-center justify-between;
+  }
+
+  .connection-status {
+    @apply flex items-center gap-2 px-4 py-2 bg-zinc-900/80 rounded-full;
+  }
+
+  .status-dot {
+    @apply w-2 h-2 rounded-full;
+  }
+
+  .status-dot-connected {
+    @apply bg-green-500 animate-pulse;
+  }
+
+  .status-dot-disconnected {
+    @apply bg-red-500;
+  }
+
+  .control-button {
+    @apply bg-zinc-700/50 text-zinc-400 rounded-lg py-3 px-6 transition-colors hover:bg-zinc-700 hover:text-zinc-300;
+  }
+
+  .control-buttons-container {
+    @apply flex gap-2;
+  }
+
+  .emergency-button {
+    @apply w-full py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors;
+  }
+}

@@ -1,0 +1,24 @@
+import { thinkVApi } from './services/api';
+
+// Example usage of the ThinkV API
+async function controlRover() {
+  // Read data
+  const data = await thinkVApi.readData();
+
+  // Update single field (e.g., rover movement)
+  await thinkVApi.updateData(1, "forward");
+
+  // Update multiple fields
+  await thinkVApi.updateMultipleFields({
+    1: "forward",  // movement
+    2: "25.5",     // sensor data
+    3: "detected", // detection
+    4: "view1"     // unity 3D viewer
+  });
+}
+
+// Execute the function
+controlRover().catch(console.error);
+
+// Make this file a module
+export {};

@@ -1,0 +1,42 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model RoverStatus {
+  id            Int         @id @default(autoincrement())
+  latitude      Float?
+  longitude     Float?
+  direction     String?     @db.VarChar(10)
+  batteryLevel  Int?
+  timestamp     DateTime    @default(now())
+  sensorData    SensorData[]
+}
+
+model SensorData {
+  id            Int         @id @default(autoincrement())
+  roverId      Int
+  rover        RoverStatus  @relation(fields: [roverId], references: [id])
+  lidarData    String?     @db.Text
+  metalDetected Boolean     @default(false)
+  metalType    String?     @db.VarChar(50)
+  timestamp    DateTime    @default(now())
+}
+
+model MetalDetectionLog {
+  id          Int         @id @default(autoincrement())
+  latitude    Float
+  longitude   Float
+  metalType   String      @db.VarChar(50)
+  timestamp   DateTime    @default(now())
+}
